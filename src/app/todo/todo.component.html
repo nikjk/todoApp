@@ -1,0 +1,17 @@
+<div class="flex-container">
+  <div *ngFor="let todo of todoList; index as i">
+    <p>
+      {{ todo.task }} ({{ todo.completed ? "Completed" : "Not completed" }})
+    </p>
+    <button *ngIf="!todo.completed" (click)="completeTask(i)">Complete</button>
+    <button (click)="removeTask(i)">x</button>
+  </div>
+  <p *ngIf="todoList.length === 0 || allTasksCompleted()">
+    Congratulations! All tasks are completed.
+  </p>
+
+  <form (submit)="addTask(task.value); task.value = ''">
+    <input type="text" #task required />
+    <button type="submit">Add Task</button>
+  </form>
+</div>
